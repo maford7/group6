@@ -17,8 +17,8 @@ CREATE TABLE `springa2023team6`.`employee` (
 ## `Table`
 
 | `Name`   | `Comment`               | `Schema`           | `Engine` |
-| :-------- | :--------------------- | :----------------- | :-------- |
-| employee | The department table.   | springa2023team6   | InnoDB   |
+| :------- | :--------------------- | :------------------ | :------- |
+| employee | The employee table.     | springa2023team6   | InnoDB   |
 
 **When using the 'InnoDB' Relational Database Modeling Techniques(aka one pk per table), will be enforced**
 
