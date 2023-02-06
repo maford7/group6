@@ -47,7 +47,7 @@
 
 
 		
-		function login() {
+		function login(loginId, loginPass) {
 			// get my values
 			var id = document.getElementById("loginId").value;
 
@@ -55,7 +55,7 @@
 			var parameters = "{\"userCount\":\"" + encodeURI(userCount) + "\"}";
 
 
-			//jQuery ajax method
+			//jQuery ajax method I am not sure how to use this method 
 			$.ajax({
 				type: "POST",
 				url: webMethod,
@@ -63,18 +63,16 @@
 				contentType: "application/json; charset=utf-8",
 				dataType: "json",
 				success: function (msg) {
-					var responseFromServer = msg.d;
-
-					for (var i = 0; i < responseFromServer.length; i++) {
-						alert(responseFromServer[i].firstName);
-						alert(responseFromServer[i].lastName);
-						alert(responseFromServer[i].phoneNumber);
+					if (msg.d){
+						showPanel('accountsPanel');
+						LoadAccounts();
 					}
-					
-					doThisAfterServerStuff();
+					else{
+						alert("login failed");
+					}
 				},
 				error: function (e) {
-					alert("this code will only execute if javascript is unable to access the webservice");
+					alert("Error. Please contact Admin for Support.");
 				}
 			});
 			
@@ -82,14 +80,36 @@
 
 		//3 login attempts
 		var attempt = 3;
-
-		function pass (){
-			if{
-				else{
-
-				}
+		function login()
+		{
+			var loginId=document.getElementById("loginId").value;
+			var loginPass=document.getElementById("loginPass").value;
+			if(loginId=="sauer.price" && pass=="afcf97aeaa2acfbc9c9f856bcc53744a")
+			{
+			alert("SuccessFully Logged In");
+			document.getElementById("loginId").value="";
+			document.getElementById("loginPass").value="";
 			}
-		}
+			else
+			{
+			if(attempt == 0)
+			{
+			alert("No Login Attempts Available");
+			}
+			else
+			{
+			attempt=attempt-1;
+			alert("Login Failed: "+attempt+" Login Attempts Available");
+			if(attempt == 0)
+			{
+				document.getElementById("loginId").disabled=true;
+				document.getElementById("loginPass").disabled=true;
+				document.getElementById("form").disabled=true;
+			}
+			}
+			}
+			return false;
+		}	
 
 
 
@@ -156,7 +176,7 @@
 		<!--<div id="login-error-holder">
 			<p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>
 		  </div> -->
-	<form>
+	<form id="form" method="post" action="" onsubmit="return form()" >
 		<hr>
 		
 		<br>User ID:  
